@@ -1,3 +1,14 @@
 const { Pool } = require("pg");
 
-// need to add environment variables for this part of the TOP lesson
+// load environment variables
+const { loadEnvFile } = require('node:process');
+loadEnvFile();
+const {HOST, USER, DATABASE, PASSWORD, PORT} = process.env;
+
+module.exports = new Pool({
+    host: HOST,
+    user: USER,
+    database: DATABASE,
+    password: PASSWORD,
+    port: PORT
+});
