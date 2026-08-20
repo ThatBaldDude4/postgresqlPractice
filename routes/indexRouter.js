@@ -1,21 +1,15 @@
 const { Router } = require("express");
 const indexRouter = Router();
-const path = require("node:path");
-const { getUsernames } = require("../controller/indexController")
-
-const options = {
-    root: "D:/Programming/TheOdinProject/Exercises/postgresqlPract",
-}
+const {
+  getUsernames,
+  createUsernameGet,
+  createUsernamePost
+} = require("../controller/indexController")
 
 indexRouter.get("/", getUsernames);
 
-indexRouter.get("/new", (req, res) => {
-    res.sendFile("views/index.html", options);
-});
+indexRouter.get("/new", createUsernameGet);
 
-indexRouter.post("/new", (req, res) => {
-    console.log("new entry submitted");
-    res.end();
-})
+indexRouter.post("/new", createUsernamePost);
 
 module.exports = indexRouter;
