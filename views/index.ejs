@@ -8,6 +8,18 @@
 <body>
     <h1>Hello world</h1>
     <a href="/new">Add user</a>
+    <form method="GET" action="/">
+        <label>
+            Search:
+            <input name="search" type="text" id="search-input">
+            <button type="submit">Submit</button>
+        </label>
+    </form>
+
+    <form  method="GET" action="/delete">
+        <button type="submit">DELETE ALL</button>
+    </form>
+
     <% if (locals.users) { %>
         <h2>Users:</h2>
         <ul>

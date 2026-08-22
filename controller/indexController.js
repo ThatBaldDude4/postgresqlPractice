@@ -5,8 +5,11 @@ const options = {
 }
 
 async function getUsernames(req, res) {
-  const usernames = await db.getAllUsernames();
-  console.log("Usernames: ", usernames);
+  let usernames = await db.getAllUsernames();
+  const query = req.query.search;
+  if (query) {
+    usernames = await db.getUsername(query)
+  }
   res.render("index", {users: usernames})
 }
 
@@ -20,8 +23,14 @@ async function createUsernamePost(req, res) {
   res.redirect("/");
 }
 
+async function deleteAllUsernames(req, res) {
+    await db.deleteUsernames();
+    res.redirect("/");
+}
+
 module.exports = {
   getUsernames,
   createUsernameGet,
-  createUsernamePost
+  createUsernamePost,
+  deleteAllUsernames
 };
